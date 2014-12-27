@@ -1,39 +1,29 @@
-<html ng-app="gemStore">
-  <head>
-    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
-    <script type="text/javascript" src="angular.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-  </head>
+<!DOCTYPE html>
 
-  <body ng-controller="StoreController as store">
-    <!--  Store Header  -->
-    <header>
-      <h1 class="text-center">Flatlander Crafted Gems</h1>
-      <h2 class="text-center">– an Angular store –</h2>
-    </header>
+<html ng-app="store">
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/app.css">
 
-    <!--  Products Container  -->
-    <div class="list-group">
-      <!--  Product Container  -->
-      <div class="list-group-item" ng-repeat="product in store.products">
-        <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+		<script type="text/javascript" src="js/products.js"></script>
+	</head>
 
-        <!-- Image Gallery  -->
-        <div ng-controller="GalleryController as gallery"  ng-show="product.images.length">
-          <div class="img-wrap">
-            <img ng-src="{{product.images[gallery.current]}}" />
-          </div>
-          <ul class="img-thumbnails clearfix">
-            <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
-              <img ng-src="{{image}}" />
-            </li>
-          </ul>
-        </div>
+	<body ng-controller="StoreController as store">
+		<header>
+			<h1 class="text-center">Flatlander Crafted Gems</h1>
+			<h2 class="text-center">– an Angular store –</h2>
+		</header>
 
-        <!-- Product Tabs  -->
-        <product-tabs></product-tabs>
-      </div>
+		<div class="list-group">
+			<div class="list-group-item" ng-repeat="product in store.products">
+				<h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
 
-    </div>
-  </body>
+				<product-gallery></product-gallery>
+
+				<product-tabs></product-tabs>
+			</div>
+		</div>
+	</body>
 </html>
